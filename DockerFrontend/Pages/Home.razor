@@ -7,7 +7,7 @@
 
 <button class="btn btn-primary" @onclick="GetPodcasts">Get Podcasts</button>
 
-@if (_podcasts is null)
+@if (_podcasts != null)
 {
 	<ul>
 		@foreach (var podcast in _podcasts)
@@ -23,6 +23,6 @@
 
     private async void GetPodcasts()
     {
-        _podcasts = await HttpClient.GetFromJsonAsync<List<string>>("http://localhost:5001/podcasts");
+		_podcasts = await HttpClient.GetFromJsonAsync<List<string>>("https://localhost:7176/podcasts");
     }
 }
