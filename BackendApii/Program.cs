@@ -1,5 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+using System.Data.SqlClient;
+using Dapper;
 
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors();
 
@@ -7,16 +9,19 @@ var app = builder.Build();
 
 app.UseCors(x => x.AllowAnyOrigin());
 
-app.MapGet("/podcasts", () => new List<string>
+app.MapGet("/podcasts", async () =>
 {
-    "Podcast 1 - Kashif",
-    "Podcast 2 - Muzamil",
-    "Podcast 3 - Usaid",
-    "Podcast 4 - Ali",
-    "Podcast 5 - Ahsan",
-    "Podcast 6 - Ahsan",
-    "Podcast 7 - Ahsan",
-    "Podcast 8 - Ahsan",
+    using var db = new SqlConnection("Server=tcp:localhost;Initial Catalog=podcasts;Persist Security Info=False;User ID=sa;Password=Admin@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;");
+
+    // Open the connection
+    await db.OpenAsync();
+
+    var podcasts = await db.QueryAsync<Podcast>("SELECT * FROM Podcasts");
+    return podcasts.Select(x => x.Title);
 });
 
+
 app.Run();
+
+
+record class Podcast(Guid Id, string Title);
