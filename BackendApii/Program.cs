@@ -9,6 +9,8 @@ var app = builder.Build();
 
 app.UseCors(x => x.AllowAnyOrigin());
 
+app.MapGet("/", () => "Hello world");
+
 app.MapGet("/podcasts", async () =>
 {
     using var db = new SqlConnection("Server=tcp:localhost;Initial Catalog=podcasts;Persist Security Info=False;User ID=sa;Password=Admin@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;");
