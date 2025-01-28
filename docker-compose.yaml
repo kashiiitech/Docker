@@ -2,7 +2,7 @@ services:
   frontend:
     build:
       context: ./DockerFrontend/.
-    image: frontend
+    image: kashiiitech/frontend
     container_name: frontend
     ports:
       - 1234:80
@@ -11,7 +11,7 @@ services:
     build: 
       # context: ./BackendApii/.
       dockerfile: ./BackendApii/Dockerfile
-    image: api
+    image: kashiiitech/api
     container_name: api
     ports:
       - 7176:8080
