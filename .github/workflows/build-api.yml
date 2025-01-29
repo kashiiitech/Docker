@@ -38,9 +38,9 @@ jobs:
           docker build \
             -t ${{ secrets.DOCKERHUB_USERNAME }}/api:latest \
             -t ${{ secrets.DOCKERHUB_USERNAME }}/api:${{github.run_number}} \
-            -f ./DockerCourseApi/DockerCourseApi/Dockerfile \
+            -f ./BackendApii/BackendApii/Dockerfile \
             --network host \
-            ./DockerCourseApi/.
+            ./BackendApii/.
       -
         name: Push
         run: |
@@ -50,8 +50,8 @@ jobs:
         # name: Build and push
         # uses: docker/build-push-action@v4
         # with:
-        #   context: ./DockerCourseApi/.
-        #   file: ./DockerCourseApi/DockerCourseApi/Dockerfile
+        #   context: ./BackendApii/.
+        #   file: ./BackendApii/BackendApii/Dockerfile
         #   network: host
         #   push: true
         #   tags: |
