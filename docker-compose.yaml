@@ -18,7 +18,6 @@ services:
 
   database:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    command: /opt/mssql/bin/sqlservr
     container_name: database
     environment:
       - ACCEPT_EULA=true
@@ -28,7 +27,7 @@ services:
 
   database-seed:
     depends_on: [ database ]
-    build: 
+    build:
       context: Database/
       dockerfile: Dockerfile
     container_name: database-seed

@@ -23,6 +23,6 @@
 
     private async void GetPodcasts()
     {
-		_podcasts = await HttpClient.GetFromJsonAsync<List<string>>("https://localhost:7176/podcasts");
+		_podcasts = await HttpClient.GetFromJsonAsync<List<string>>("http://localhost:7176/podcasts");
     }
 }
